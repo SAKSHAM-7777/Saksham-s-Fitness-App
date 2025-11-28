@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ethics | UFV FitZone</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    // Check login token on page load
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = 'login.html';
+    }
+
+    // Logout function
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = 'login.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          logout();
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+<header>
+  <h1>Ethical theories in action </h1>
+ <nav>
+    <a href="index.html">Subjective Realtivism</a>
+    
+    <a href="ethics.html">Ethics</a>
+    <a href="features.html">Divine Command </a>
+ 
+    <a href="team.html">Ethical Egoism</a>
+    <a href="get-involved.html">Kantianism</a>
+    
+    
+    <a href="workout.html">Act Utilitarianism</a>
+    <a href="#" id="logoutBtn">Logout</a>
+  </nav>
+</header>
+
+<!-- Hero section with background image -->
+<section class="hero-ethics">
+  <div class="hero-content">
+    <h2>Come and explore our fitness journey through Saksham's Fitness App</h2>
+  </div>
+</section>
+
+<div class="container ethics-container">
+  <h2>9.5 Theories in Action</h2>
+
+  <div class="ethics-grid">
+    <div class="ethics-card">
+      <img src="subjective realtivism.jpeg" alt="Subjective Relativism">
+      <h3>1. Subjective Relativism</h3>
+      <p>Each person has right to exercise and it depends on his will whether he/she wants to exercise.Same goes for KEVIN (chacha) if he wants to exercise or not .The APP will help our community, get fit, track exercise, make new friends </p>
+    </div>
+
+    <div class="ethics-card">
+      <img src="cultural realtivism.jpeg" alt="Cultural Relativism">
+      <h3>2. Cultural Relativism</h3>
+      <p>The society decides for our health and we need to exercise or not depends on the cultural society , so do society decides for KEVIN (chacha) if he should exercise or not. It’s an APP that improves UFV’s image, and may sell our university more in the community:
+ </p>
+    </div>
+
+    <div class="ethics-card">
+      <img src="divine.jpeg" alt="Divine Command">
+      <h3>3. Divine Command Theory</h3>
+      <p>This app promotes kindness and respect through wellness and self-care. The God decides whether you need to exercise or not , so do for KEVIN (Chacha) the God will decide whether he needs to exercise or not but no Kevin will exercise under the will of god </p>
+    </div>
+
+    <div class="ethics-card">
+      <img src="ethical.jpeg" alt="Ethical Egoism">
+      <h3>4. Ethical Egoism</h3>
+      <p>It works in a way that it's the self-interest of the users . It depends upon the self interest of KEVIN (Chacha) like what he gains in return of doing exercise.UFV will be a leader in this field, nothing like this exists – would could then include other universities/colleges</p>
+    </div>
+
+    <div class="ethics-card">
+      <img src="kant.png" alt="Kantianism">
+      <h3>5. Kantianism</h3>
+      <p>KEVIN ought to do execrise as this might bring profits either way moneywise and healthwise thus we act ethically because we ought to — protecting data, promoting honesty, and treating users as ends.We’re so lucky to live in Canada</p>
+    </div>
+
+    <div class="ethics-card">
+      <img src="act.jpeg" alt="Utilitarianism">
+      <h3>6. Act Utilitarianism</h3>
+      <p>KEVIN (chacha) should only workout if doing exercise gives him happiness. Each workout or friendship formed increases total happiness in our community.Thus is produces happiness for chacha also </p>
+    </div>
+
+    <div class="ethics-card">
+      <img src="rule.jpeg" alt="Rule Utilitarianism">
+      <h3>7. Rule Utilitarianism</h3>
+      <p>Now for Chacha the units of happiness is definetly money but while exercising it would be calories burned by Kevin . By following fair fitness and data practices, it ensures the greatest good for the greatest number.</p>
+    </div>
+
+    <div class="ethics-card">
+      <img src="social.jpeg" alt="Social Contract">
+      <h3>8. Social Contract & Rawls theory of justice</h3>
+      <p>Kevin should share his wealth as he is very rich so that he can help the less rich people .Therfore the app operates with transparency, fairness, and opportunity for all — profits reinvested into UFV students.</p>
+    </div>
+
+    <div class="ethics-card">
+      <img src="virtue.jpeg" alt="Virtue Ethics">
+      <h3>9. Virtue Ethics</h3>
+      <p>Our App works with core values like  honesty, courage, balance, and community well-being over profit.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <nav class="nav-bottom">
+    <a href="about.html">About</a>
+     <a href="community.html">Cultural Relativism </a>
+    <a href="faq.html">Social Contract theory</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="#" id="logoutBtn">Logout</a>
+  </nav>
+  <p>2025 Saksham's Fitness App</p>
+</footer>
+</body>
+</html>

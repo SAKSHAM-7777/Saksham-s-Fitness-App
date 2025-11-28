@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UFV| Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+   
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = 'login.html';
+    }
+
+   
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = 'login.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          logout();
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+
+<header>
+  <h1 class="gradient-text">UFV </h1>
+  <nav>
+    <a href="index.html">Subjective Realtivism</a>
+    
+    <a href="ethics.html">Ethics</a>
+    <a href="features.html">Divine Command </a>
+ 
+    <a href="team.html">Ethical Egoism</a>
+    <a href="get-involved.html">Kantianism</a>
+    
+    
+    <a href="workout.html">Act Utilitarianism</a>
+    <a href="#" id="logoutBtn">Logout</a>
+  </nav>
+  
+</header>
+
+
+<section class="hero-section">
+  <div class="hero-content fade-section">
+    <h2>Where Fitness Meets Community </h2>
+    <div class="btn-layout">
+      <a href="get-involved.html" class="btn">Join Now</a>
+    </div>
+  </div>
+</section>
+
+
+<div class="container glass-card fade-section">
+  <section>
+    <h2>Welcome to Saksham's Fitness app </h2>
+    <p>Where Fitness Meets Philosophy… and Kevin (Chacha) Still Tries to Avoid Working Out..</p>
+    <p>By using this App, you can track workouts done, participate , and support UFV’s local initiatives.</p>
+    <a href="about.html" class="btn">Learn More</a>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer>
+  <nav class="nav-bottom">
+    <a href="about.html">About</a>
+     <a href="community.html">Cultural Relativism </a>
+    <a href="faq.html">Social Contract theory</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="#" id="logoutBtn">Logout</a>
+  </nav>
+  <p>2025 Saksham's Fitness App | Created by SAKSHAM DHALL</p>
+</footer>
+
+
+<script>
+  const sections = document.querySelectorAll('.fade-section');
+  const revealOnScroll = () => {
+    const triggerBottom = window.innerHeight * 0.85;
+    sections.forEach(section => {
+      const top = section.getBoundingClientRect().top;
+      if (top < triggerBottom) {
+        section.classList.add('visible');
+      }
+    });
+  };
+  window.addEventListener('scroll', revealOnScroll);
+  revealOnScroll();
+</script>
+</body>
+</html>

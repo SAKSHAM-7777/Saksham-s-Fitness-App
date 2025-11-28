@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Features | UFV FitZone</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = 'login.html';
+    }
+
+    
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = 'login.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          logout();
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+<header>
+  <h1>App Features</h1>
+<nav>
+    <a href="index.html">Subjective Realtivism</a>
+    
+    <a href="ethics.html">Ethics</a>
+    <a href="features.html">Divine Command </a>
+ 
+    <a href="team.html">Ethical Egoism</a>
+    <a href="get-involved.html">Kantianism</a>
+    
+    
+    <a href="workout.html">Act Utilitarianism</a>
+    <a href="#" id="logoutBtn">Logout</a>
+  </nav>
+</header>
+
+<div class="container">
+  <section>
+    <ul>
+      <li> Get Fit track, exercise and make new friends</li>
+      <li> Helps in improving UFV's image in society</li>
+      <li> The profits made are used to support the UFV students.</li>
+      <li> Help the community ,happier people make happier decisions</li>
+      <li> Works on the platform of virtue ethics.</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <nav class="nav-bottom">
+    <a href="about.html">About</a>
+     <a href="community.html">Cultural Relativism </a>
+    <a href="faq.html">Social Contract theory</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="#" id="logoutBtn">Logout</a>
+  </nav>
+  <p>2025 Saksham's Fitness App</p>
+</footer>
+</body>
+</html>

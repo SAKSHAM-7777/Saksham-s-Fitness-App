@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Workout | UFV FitZone</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    // Check login token on page load
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = 'login.html';
+    }
+
+    // Logout function
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = 'login.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          logout();
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+<header>
+  <h1>Workout Tracker</h1>
+  <nav>
+    
+    <a href="index.html">Subjective Relativism</a>
+    <a href="about.html">About</a>
+    <a href="ethics.html">Ethics</a>
+    <a href="features.html">Divine Command Theory</a>
+    <a href="community.html">Cultural Realtivism</a>
+    <a href="team.html">Ethical Egoism</a>
+    <a href="get-involved.html">Kantianism</a>
+    <a href="faq.html">Social Contract Theory</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    
+    <a href="#" id="logoutBtn">Logout</a>
+  </nav>
+
+  <div id="message"></div>
+
+  <form id="workoutForm">
+    <label>Date: <input type="date" id="date" required /></label><br />
+    <label>Type: <input type="text" id="type" placeholder="e.g. Running" required /></label><br />
+    <label>Duration (minutes): <input type="number" id="duration" min="1" required /></label><br />
+    <button type="submit">Add Workout</button>
+  </form>
+
+  <h2>Your Workouts</h2>
+  <ul id="workoutsList"></ul>
+
+  <script>
+    const messageDiv = document.getElementById('message');
+    const workoutsList = document.getElementById('workoutsList');
+
+    function displayWorkouts(workouts) {
+      workoutsList.innerHTML = '';
+      if (workouts.length === 0) {
+        workoutsList.innerHTML = '<li>No workouts recorded yet.</li>';
+        return;
+      }
+      workouts.forEach((w) => {
+        const li = document.createElement('li');
+        li.textContent = w.date + ' - ' + w.type + ' - ' + w.duration + ' minutes';
+        workoutsList.appendChild(li);
+      });
+    }
+
+    async function fetchWorkouts() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        messageDiv.textContent = 'You must be logged in to view workouts.';
+        return;
+      }
+
+      try {
+        const res = await fetch('/workouts', {
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if (res.status === 401 || res.status === 403) {
+          messageDiv.textContent = 'Authentication required. Please login again.';
+          return;
+        }
+        const data = await res.json();
+        displayWorkouts(data);
+      } catch (err) {
+        messageDiv.textContent = 'Failed to fetch workouts.';
+      }
+    }
+
+    document.getElementById('workoutForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const date = document.getElementById('date').value;
+      const type = document.getElementById('type').value;
+      const duration = parseInt(document.getElementById('duration').value, 10);
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        messageDiv.textContent = 'You must be logged in to add workouts.';
+        return;
+      }
+
+      try {
+        const res = await fetch('/workouts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+          },
+          body: JSON.stringify({ date, type, duration })
+        });
+        const data = await res.json();
+        messageDiv.textContent = data.message || 'Workout added.';
+        fetchWorkouts();
+      } catch (err) {
+        messageDiv.textContent = 'Failed to add workout.';
+      }
+    });
+
+    // Load workouts at start
+    fetchWorkouts();
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login | UFV FitZone</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <h1>Welcome to Saksham's fitness app </h1>
+  <div id="message"></div>
+
+  <h2>Register</h2>
+  <form id="registerForm">
+    <label>Username: <input type="text" id="regUsername" required /></label><br />
+    <label>Password: <input type="password" id="regPassword" required /></label><br />
+    <button type="submit">Register</button>
+  </form>
+
+  <h2>Login</h2>
+  <form id="loginForm">
+    <label>Username: <input type="text" id="loginUsername" required /></label><br />
+    <label>Password: <input type="password" id="loginPassword" required /></label><br />
+    <button type="submit">Login</button>
+  </form>
+
+  <script>
+    const messageDiv = document.getElementById('message');
+
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('regUsername').value;
+      const password = document.getElementById('regPassword').value;
+
+      try {
+        const res = await fetch('/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+        const data = await res.json();
+        messageDiv.textContent = data.message || 'Registered';
+      } catch (err) {
+        messageDiv.textContent = 'Error during registration';
+      }
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('loginUsername').value;
+      const password = document.getElementById('loginPassword').value;
+
+      try {
+        const res = await fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+        const data = await res.json();
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          messageDiv.textContent = 'Login successful! You can now go to the home page.';
+          window.location.href = 'index.html';
+        } else {
+          messageDiv.textContent = data.message || 'Login failed';
+        }
+      } catch (err) {
+        messageDiv.textContent = 'Error during login';
+      }
+    });
+  </script>
+</body>
+</html>

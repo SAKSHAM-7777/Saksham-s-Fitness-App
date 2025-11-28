@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FAQ | UFV FitZone</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    // Check login token on page load
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = 'login.html';
+    }
+
+    // Logout function
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = 'login.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          logout();
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+<header>
+  <h1>FAQ</h1>
+  <nav>
+    <a href="index.html">Subjective Realtivism</a>
+    
+    <a href="ethics.html">Ethics</a>
+    <a href="features.html">Divine Command </a>
+ 
+    <a href="team.html">Ethical Egoism</a>
+    <a href="get-involved.html">Kantianism</a>
+    
+    
+    <a href="workout.html">Act Utilitarianism</a>
+    <a href="#" id="logoutBtn">Logout</a>
+  </nav>
+</header>
+
+<div class="container">
+  <section>
+    <h2> Yes its totally free ! </h2>
+    <p>It build for the the students and peers so that community comes together as a whole and enjoy the free benfits from the app.</p>
+  </section>
+  <section>
+    <h2>Where does profit go?</h2>
+    <p>Profits are used to give prizes inside the communities when there is any competition.</p>
+  </section>
+</div>
+
+<footer>
+  <nav class="nav-bottom">
+    <a href="about.html">About</a>
+     <a href="community.html">Cultural Relativism </a>
+    <a href="faq.html">Social Contract theory</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="#" id="logoutBtn">Logout</a>
+  </nav>
+  <p> 2025 Saksham's Fitness App </p>
+</footer>
+</body>
+</html>
